@@ -1,0 +1,9 @@
+node_modules/
+.env
+.DS_Store
+dist/
+build/
+.vscode/
+Legal_Notices_Export (2).csv
+backend/chrome_profile/
+backend/chrome_profile_article/

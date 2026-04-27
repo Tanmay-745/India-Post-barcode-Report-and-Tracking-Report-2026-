@@ -1,0 +1,193 @@
+:root {
+    --bg-color: #0b1a2a;
+    --bat-color: #111;
+    --eye-color: #fa5252;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.sky {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #050510 0%, #0b1a2a 100%);
+}
+
+.stars {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow:
+        10vw 10vh #fff, 20vw 30vh #fff, 40vw 20vh #fff, 60vw 40vh #fff, 80vw 15vh #fff,
+        90vw 45vh #fff, 15vw 60vh #fff, 35vw 80vh #fff, 55vw 70vh #fff, 75vw 85vh #fff,
+        12vw 12vh 1px #fff, 45vw 33vh 1px #fff, 78vw 56vh 1px #fff;
+    opacity: 0.6;
+    animation: stars-twinkle 3s infinite alternate;
+}
+
+@keyframes stars-twinkle {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+.moon {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    width: 120px;
+    height: 120px;
+    background: #e9ecef;
+    border-radius: 50%;
+    box-shadow:
+        0 0 40px #e9ecef,
+        0 0 80px rgba(233, 236, 239, 0.3);
+}
+
+.moon::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 30px;
+    height: 20px;
+    background: #ced4da;
+    border-radius: 50%;
+    box-shadow: -15px 30px #ced4da, 20px 45px #ced4da;
+}
+
+.bat-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: bat-flight 4s ease-in-out infinite;
+}
+
+@keyframes bat-flight {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) rotate(-5deg);
+        top: 50%;
+    }
+
+    50% {
+        transform: translate(-50%, -60%) rotate(5deg);
+        top: 45%;
+    }
+}
+
+.bat {
+    width: 1px;
+    height: 1px;
+    transform: scale(15);
+    /* Increased scale for visibility */
+    position: relative;
+    left: -129px;
+    top: -128px;
+    -webkit-animation: 0.3s bat steps(1) infinite;
+    animation: 0.3s bat steps(1) infinite;
+}
+
+/* 
+   The @keyframes bat defines the pixel art using box-shadow.
+   We'll use a slightly lighter color for the body and bright red for eyes.
+*/
+
+@keyframes bat {
+
+    0%,
+    100% {
+        /* Frame 1: Wings out */
+        box-shadow:
+            /* Body core */
+            128px 128px var(--bat-color), 129px 128px var(--bat-color), 130px 128px var(--bat-color),
+            129px 127px var(--bat-color), 129px 129px var(--bat-color),
+            /* Lower body/tail */
+            129px 130px var(--bat-color),
+            /* Eyes */
+            128px 127px var(--eye-color), 130px 127px var(--eye-color),
+            /* Left Wing */
+            127px 127px var(--bat-color), 126px 127px var(--bat-color), 125px 128px var(--bat-color), 124px 128px var(--bat-color),
+            /* Right Wing */
+            131px 127px var(--bat-color), 132px 127px var(--bat-color), 133px 128px var(--bat-color), 134px 128px var(--bat-color);
+    }
+
+    50% {
+        /* Frame 2: Wings up */
+        box-shadow:
+            /* Body core */
+            128px 128px var(--bat-color), 129px 128px var(--bat-color), 130px 128px var(--bat-color),
+            129px 127px var(--bat-color), 129px 129px var(--bat-color),
+            /* Lower body/tail */
+            129px 130px var(--bat-color),
+            /* Eyes */
+            128px 127px var(--eye-color), 130px 127px var(--eye-color),
+            /* Left Wing Up */
+            127px 126px var(--bat-color), 126px 125px var(--bat-color), 125px 124px var(--bat-color), 124px 123px var(--bat-color),
+            /* Right Wing Up */
+            131px 126px var(--bat-color), 132px 125px var(--bat-color), 133px 124px var(--bat-color), 134px 123px var(--bat-color);
+    }
+}
+
+/* Background bats for depth */
+.sky::before,
+.sky::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    transform: scale(4);
+    animation: background-bat-flap 0.5s steps(1) infinite, background-bat-move 10s linear infinite;
+}
+
+.sky::before {
+    top: 30%;
+    left: -100px;
+    animation-delay: 0s, 2s;
+}
+
+.sky::after {
+    top: 60%;
+    left: -100px;
+    animation-delay: 0s, 5s;
+    transform: scale(3);
+}
+
+@keyframes background-bat-flap {
+
+    0%,
+    100% {
+        box-shadow: 0 0 #111, -1px -1px #111, 1px -1px #111;
+    }
+
+    50% {
+        box-shadow: 0 0 #111, -1px 1px #111, 1px 1px #111;
+    }
+}
+
+@keyframes background-bat-move {
+    from {
+        left: -50px;
+    }
+
+    to {
+        left: 110vw;
+    }
+}
