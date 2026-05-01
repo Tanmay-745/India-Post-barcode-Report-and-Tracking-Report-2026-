@@ -3,13 +3,12 @@ const cors = require('cors');
 const multer = require('multer');
 const xlsx = require('xlsx');
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const { scrapeReceipts } = require('./scraper');
 const { scrapeArticles } = require('./scraper_article');
 
 const app = express();
-const uploadDir = path.join(os.tmpdir(), 'india-post-automation', 'uploads');
+const uploadDir = path.join(__dirname, 'uploads');
 fs.mkdirSync(uploadDir, { recursive: true });
 const upload = multer({ dest: uploadDir });
 
@@ -23,30 +22,19 @@ function cleanupGeneratedArchive(result, options = {}) {
   const zipPath = typeof result === 'string' ? result : result?.zipPath;
   const cleanupDirs = Array.isArray(result?.cleanupDirs) ? result.cleanupDirs : [];
   const keepZip = Boolean(options.keepZip);
-  const resolvedZipPath = zipPath ? path.resolve(zipPath).toLowerCase() : '';
+
+  for (const dir of cleanupDirs) {
+    if (dir && fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
+      console.log(`Deleted temporary download folder: ${dir}`);
+    }
+  }
 
   if (zipPath && keepZip && fs.existsSync(zipPath)) {
     console.log(`Kept generated ZIP for manual retry: ${zipPath}`);
   } else if (zipPath && fs.existsSync(zipPath)) {
     fs.unlinkSync(zipPath);
     console.log(`Deleted temporary ZIP file: ${zipPath}`);
-  }
-
-  for (const dir of cleanupDirs) {
-    if (!dir || !fs.existsSync(dir)) continue;
-
-    const resolvedDir = path.resolve(dir).toLowerCase();
-    const dirContainsKeptZip = keepZip
-      && resolvedZipPath
-      && (resolvedZipPath === resolvedDir || resolvedZipPath.startsWith(`${resolvedDir}${path.sep}`));
-
-    if (dirContainsKeptZip) {
-      console.log(`Kept temporary folder because it contains the retained ZIP: ${dir}`);
-      continue;
-    }
-
-    fs.rmSync(dir, { recursive: true, force: true });
-    console.log(`Deleted temporary download folder: ${dir}`);
   }
 }
 

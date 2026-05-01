@@ -1,6 +1,5 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const AdmZip = require('adm-zip');
 
@@ -303,8 +302,7 @@ async function scrapeReceipts({ username, password, barcodeList = [] }) {
       try { Object.defineProperty(window, 'print', { value: () => {}, writable: false }); } catch(e){}
   });
   const timestamp = Date.now();
-  const jobDir = path.join(os.tmpdir(), 'india-post-automation', `receipts_${timestamp}`);
-  const downloadDir = path.join(jobDir, 'files');
+  const downloadDir = path.join(__dirname, `downloads_${timestamp}`);
   fs.mkdirSync(downloadDir, { recursive: true });
 
   try {
@@ -507,10 +505,10 @@ async function scrapeReceipts({ username, password, barcodeList = [] }) {
     console.log("Zipping the generated PDFs...");
     const zip = new AdmZip();
     zip.addLocalFolder(downloadDir);
-    const zipPath = path.join(jobDir, `bulk_receipts_${timestamp}.zip`);
+    const zipPath = path.join(__dirname, `bulk_receipts_${timestamp}.zip`);
     zip.writeZip(zipPath);
 
-    return { zipPath, cleanupDirs: [downloadDir, jobDir] };
+    return { zipPath, cleanupDirs: [downloadDir] };
   } catch (error) {
     console.error("Scraping error encountered: ", error);
     throw error;

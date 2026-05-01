@@ -1,6 +1,9 @@
 node_modules
+frontend/node_modules
+backend/node_modules
 backend/uploads
 backend/downloads_*
 backend/articles_*
 backend/*.zip
+backend/chrome_profile*
 backend/chrome_guest_profile

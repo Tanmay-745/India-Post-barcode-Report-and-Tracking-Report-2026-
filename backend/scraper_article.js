@@ -1,6 +1,5 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const AdmZip = require('adm-zip');
 
@@ -27,8 +26,7 @@ async function scrapeArticles({ username, password, barcodeList = [] }) {
   
 
   const timestamp = Date.now();
-  const jobDir = path.join(os.tmpdir(), 'india-post-automation', `articles_${timestamp}`);
-  const downloadDir = path.join(jobDir, 'files');
+  const downloadDir = path.join(__dirname, `articles_${timestamp}`);
   fs.mkdirSync(downloadDir, { recursive: true });
 
   try {
@@ -472,10 +470,10 @@ async function scrapeArticles({ username, password, barcodeList = [] }) {
     console.log("Zipping the article PDFs...");
     const zip = new AdmZip();
     zip.addLocalFolder(downloadDir);
-    const zipPath = path.join(jobDir, `bulk_articles_${timestamp}.zip`);
+    const zipPath = path.join(__dirname, `bulk_articles_${timestamp}.zip`);
     zip.writeZip(zipPath);
 
-    return { zipPath, cleanupDirs: [downloadDir, jobDir] };
+    return { zipPath, cleanupDirs: [downloadDir] };
   } catch (error) {
     console.error("Article scraping error: ", error);
     throw error;
