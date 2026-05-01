@@ -1,0 +1,16 @@
+{
+  "name": "india-post-automation-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx concurrently \"npm run start --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "multer": "^2.1.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

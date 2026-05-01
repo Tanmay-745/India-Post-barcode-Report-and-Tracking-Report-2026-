@@ -1,0 +1,6 @@
+node_modules
+backend/uploads
+backend/downloads_*
+backend/articles_*
+backend/*.zip
+backend/chrome_guest_profile

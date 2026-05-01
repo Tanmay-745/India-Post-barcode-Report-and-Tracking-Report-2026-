@@ -1,0 +1,51 @@
+0:10:57 Browser213 Close Tab213 at 0
+0:10:57 Widget Closed: BrowserWidget
+0:10:57 Browser214 Insert active Tab214 at 0
+0:10:57 Tab214 StartNav1058 #renderer-script #link
+0:10:57 Tab214 FinishNav1058
+0:10:57 Tab214 PageLoad
+0:10:58 PDF.LoadSuccess
+0:11:00 Widget Closed: ConstrainedDialogWebView
+0:11:00 Browser214 Close Tab214 at 0
+0:11:00 Widget Closed: BrowserWidget
+0:11:00 Browser215 Insert active Tab215 at 0
+0:11:00 Tab215 StartNav1063 #renderer-script #link
+0:11:00 Tab215 FinishNav1063
+0:11:00 Tab215 PageLoad
+0:11:01 PDF.LoadSuccess
+0:11:02 Widget Closed: ConstrainedDialogWebView
+0:11:02 Browser215 Close Tab215 at 0
+0:11:02 Widget Closed: BrowserWidget
+0:11:02 Browser216 Insert active Tab216 at 0
+0:11:02 Tab216 StartNav1068 #renderer-script #link
+0:11:02 Tab216 FinishNav1068
+0:11:02 Tab216 PageLoad
+0:11:03 PDF.LoadSuccess
+0:11:05 Widget Closed: ConstrainedDialogWebView
+0:11:05 Browser216 Close Tab216 at 0
+0:11:05 Widget Closed: BrowserWidget
+0:11:05 Browser217 Insert active Tab217 at 0
+0:11:05 Tab217 StartNav1073 #renderer-script #link
+0:11:05 Tab217 FinishNav1073
+0:11:05 Tab217 PageLoad
+0:11:06 PDF.LoadSuccess
+0:11:07 Widget Closed: ConstrainedDialogWebView
+0:11:07 Browser217 Close Tab217 at 0
+0:11:07 Widget Closed: BrowserWidget
+0:11:07 Browser218 Insert active Tab218 at 0
+0:11:07 Tab218 StartNav1078 #renderer-script #link
+0:11:07 Tab218 FinishNav1078
+0:11:07 Tab218 PageLoad
+0:11:08 PDF.LoadSuccess
+0:11:10 Widget Closed: ConstrainedDialogWebView
+0:11:10 Browser218 Close Tab218 at 0
+0:11:10 Widget Closed: BrowserWidget
+0:11:10 Browser219 Insert active Tab219 at 0
+0:11:10 Tab219 StartNav1083 #renderer-script #link
+0:11:10 Tab219 FinishNav1083
+0:11:10 Tab219 PageLoad
+0:11:11 PDF.LoadSuccess
+0:11:12 Widget Closed: ConstrainedDialogWebView
+0:11:12 Browser219 Close Tab219 at 0
+0:11:12 Widget Closed: BrowserWidget
+0:11:15 Browser1 Close Tab1 at 0
